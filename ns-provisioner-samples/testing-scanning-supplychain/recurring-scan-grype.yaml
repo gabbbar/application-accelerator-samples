@@ -13,13 +13,13 @@ metadata:
   name: grype-recurring-scan
 spec:
   images:
-    createdWithinDays: 100
+    createdWithinDays: 180
     ranWithinDays: 0
   retentionPolicy:
     maxFailedScans: 1
     maxSuccessfulScans: 1
   schedule:
-    cron: "0 6 * * *"
+    cron: "0 */6 * * *"
     startingDeadline: 60m
   scan:
     workspace:
