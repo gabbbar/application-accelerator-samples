@@ -1,0 +1,11 @@
+#@data/values
+
+#@ def get_ns():
+#@     small = [{"name": "where-for-dinner-small-" + str(i)} for i in range(1, 301)]
+#@     return small
+#@ end
+
+---
+namespaces: #@ get_ns()
+
+#! namespaces: #@ [{"name": "where-for-dinner-small-" + str(i)} for i in range(1, 301)
