@@ -1,11 +1,12 @@
 #! This file contains a Grype Scan policy which blocks the supply chain if your workload has Critical, High or UnknownSeverity CVEs
 #! in your source code or image.
+#! As per 1.9 implementation change, recurring scan setup is not needed via nsp
 #@ load("@ytt:data", "data")
 #@ def in_list(k1, k2, k3):
 #@  return hasattr(data.values.tap_values, k1) and (k2 in data.values.tap_values[k1]) and (k3 in data.values.tap_values[k1][k2])
 #@ end
 #! This if condition ensures that this scan policy is only created if the supply chain is testing_scanning and the TAP profile used is full or build.
-#@ if/end in_list('ootb_supply_chain_testing_scanning', 'image_scanner_template_name', 'image-vulnerability-scan-trivy'):
+#@ if/end in_list('ootb_supply_chain_testing_scanning', 'image_scanner_template_name', 'image-vulnerability-scan-trivy-do-not-run'):
 ---
 apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
 kind: RecurringImageVulnerabilityScan
