@@ -11,11 +11,11 @@ metadata:
     apps.tanzu.vmware.com/has-tests: "true"
 spec:
   params:
-    - name: ports
-      value:
-        - port: 80
-          containerPort: 8080
-          name: http
+  - name: ports
+    value:
+      - port: 80
+        containerPort: 8080
+        name: http
   resources:
     requests:
       memory: "500M"
@@ -28,11 +28,11 @@ spec:
       - name: BP_JVM_VERSION
         value: "21"
   serviceClaims:
-    - name: rmq
-      ref:
-        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-        kind: ResourceClaim
-        name: rmq-where-for-dinner
+  - name: rmq
+    ref:
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ResourceClaim
+      name: rmq-where-for-dinner
   source:
     git:
       url: <https URL for your generated project's Git repository>
