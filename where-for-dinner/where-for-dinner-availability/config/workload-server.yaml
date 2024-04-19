@@ -13,11 +13,11 @@ spec:
       - name: BP_JVM_VERSION
         value: '21'
   params:
-    - name: ports
-      value:
-        - containerPort: 8080
-          name: http
-          port: 80
+  - name: ports
+    value:
+      - containerPort: 8080
+        name: http
+        port: 80
   resources:
     limits:
       cpu: '1.5'
@@ -26,11 +26,11 @@ spec:
       cpu: 100m
       memory: 500M
   serviceClaims:
-    - name: rmq
-      ref:
-        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-        kind: ResourceClaim
-        name: rmq-where-for-dinner
+  - name: rmq
+    ref:
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ResourceClaim
+      name: rmq-where-for-dinner
   source:
     git:
       ref:
