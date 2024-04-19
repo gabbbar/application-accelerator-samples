@@ -1,0 +1,39 @@
+---
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: where-for-dinner-availability
+  labels:
+    apps.tanzu.vmware.com/workload-type: server
+    app.kubernetes.io/part-of: where-for-dinner-availability
+    networking.knative.dev/visibility: cluster-local
+spec:
+  build:
+    env:
+      - name: BP_JVM_VERSION
+        value: '21'
+  params:
+    - name: ports
+      value:
+        - containerPort: 8080
+          name: http
+          port: 80
+  resources:
+    limits:
+      cpu: '1.5'
+      memory: 1Gi
+    requests:
+      cpu: 100m
+      memory: 500M
+  serviceClaims:
+    - name: rmq
+      ref:
+        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+        kind: ResourceClaim
+        name: rmq-where-for-dinner
+  source:
+    git:
+      ref:
+        branch: main
+      url: <https URL for your generated project's Git repository>
+    subPath: where-for-dinner-availability
